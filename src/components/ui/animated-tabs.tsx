@@ -91,14 +91,14 @@ const AnimatedTabs = ({ tabs = defaultTabs, defaultTab, className }: AnimatedTab
 
   return (
     <div className={cn("flex w-full max-w-lg flex-col gap-y-3", className)}>
-      <div className="rounded-2xl border border-white/10 bg-[#4B0082]/70 px-3 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.25)] backdrop-blur-sm">
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="relative min-h-[16rem] overflow-hidden rounded-2xl border border-white/10 bg-[#4B0082]/70 px-3 py-4 shadow-[0_12px_30px_rgba(0,0,0,0.25)] backdrop-blur-sm sm:min-h-[11rem] lg:min-h-[7rem]">
+        <div className="flex w-full flex-wrap justify-center gap-2">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              "relative rounded-xl px-3 py-2 text-xs font-semibold text-white outline-none transition-all hover:-translate-y-0.5 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white/40 sm:text-sm",
+              "relative min-w-[7.5rem] flex-1 overflow-hidden rounded-xl px-2.5 py-2 text-center text-xs font-semibold text-white outline-none transition-all hover:-translate-y-0.5 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white/40 sm:min-w-[9rem] sm:px-3 sm:text-sm",
             )}
             type="button"
           >
@@ -109,13 +109,13 @@ const AnimatedTabs = ({ tabs = defaultTabs, defaultTab, className }: AnimatedTab
                 transition={{ type: "spring", duration: 0.6 }}
               />
             )}
-            <span className="relative z-10">{tab.label}</span>
+            <span className="relative z-10 block w-full truncate">{tab.label}</span>
           </button>
         ))}
         </div>
       </div>
 
-      <div className="min-h-60 h-full rounded-2xl border border-white/10 bg-[#3A0065]/70 p-5 text-white shadow-[0_16px_36px_rgba(0,0,0,0.25)] backdrop-blur-sm sm:p-6">
+      <div className="relative min-h-60 h-full overflow-hidden rounded-2xl border border-white/10 bg-[#3A0065]/70 p-5 text-white shadow-[0_16px_36px_rgba(0,0,0,0.25)] backdrop-blur-sm sm:p-6">
         {tabs.map(
           (tab) =>
             activeTab === tab.id && (

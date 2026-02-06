@@ -1,12 +1,10 @@
 import { ExternalLink, CheckCircle } from 'lucide-react';
-
-const GOOGLE_FORMS_URL = 'https://forms.gle/';
+import { Link } from 'react-router-dom';
 
 const CTASection = () => {
   const benefits = [
     'Cursos 100% gratuitos',
     'Certificado de participação',
-    'Material didático incluso',
     'Vagas limitadas'
   ];
 
@@ -30,8 +28,8 @@ const CTASection = () => {
 
           {/* Description */}
           <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-            As inscrições são realizadas por formulário online. 
-            Clique no botão abaixo para acessar o Google Forms e <strong>garantir sua vaga</strong>.
+            As inscrições são realizadas por formulário online.
+            Clique no botão abaixo para <strong>garantir sua vaga</strong>.
           </p>
 
           {/* Benefits */}
@@ -48,19 +46,17 @@ const CTASection = () => {
           </div>
 
           {/* CTA Button */}
-          <a
-            href={GOOGLE_FORMS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/registro"
             className="group inline-flex items-center gap-3 px-10 py-5 bg-primary-foreground text-primary rounded-full font-bold text-xl shadow-2xl hover:scale-105 hover:shadow-cta transition-all duration-300"
           >
             Fazer Inscrição
             <ExternalLink className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </a>
+          </Link>
 
           {/* Notice */}
           <p className="mt-8 text-sm text-primary-foreground/70">
-            Ao clicar, você será redirecionada para o formulário de inscrição do Google Forms.
+            Ao clicar, você será redirecionada para o formulário de inscrição.
             <br />
             <span className="text-primary-foreground/50">
               Vagas sujeitas à disponibilidade. Confirmação por e-mail ou WhatsApp.

@@ -1,31 +1,24 @@
-import { useState, useMemo } from 'react';
-import { courses, CourseCategory } from '@/data/courses';
+import { useMemo } from 'react';
+import { courses } from '@/data/courses';
 import CourseCard from './CourseCard';
 import { AnimatedTabs } from '@/components/ui/animated-tabs';
 import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
-const categories: (CourseCategory | 'Todos')[] = ['Todos', 'Saúde', 'Empreendedorismo', 'Oficina', 'Curso', 'Palestra'];
-
 const CoursesSection = () => {
-  const [activeCategory, setActiveCategory] = useState<CourseCategory | 'Todos'>('Todos');
-
-  const filteredCourses = useMemo(() => {
-    if (activeCategory === 'Todos') {
-      return [...courses].sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
-    }
-    return courses
-      .filter(course => course.categoria === activeCategory)
-      .sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
-  }, [activeCategory]);
+  const filteredCourses = useMemo(
+    () => [...courses].sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime()),
+    [],
+  );
 
   const tabs = useMemo(
     () =>
       filteredCourses.map((course, index) => {
         const labelDate = format(parseISO(course.data), "d MMM", { locale: ptBR });
+        const labelStart = course.horario.split(' - ')[0]?.replace(':00', 'h') ?? '';
         return {
           id: course.id,
-          label: `${labelDate} · ${course.categoria}`,
+          label: `${labelDate} · ${labelStart}`,
           content: <CourseCard key={course.id} course={course} index={index} />,
         };
       }),
@@ -45,26 +38,17 @@ const CoursesSection = () => {
               Cursos do <span className="text-gradient">Mês da Mulher</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Confira todos os cursos, oficinas e palestras disponíveis. 
-              Use os filtros para encontrar o que mais combina com você.
+              Confira a programação de <strong className="text-foreground">Empreendedorismo</strong> em Curionópolis.
             </p>
           </div>
 
-          {/* Category Filters */}
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-12">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 ${
-                  activeCategory === category
-                    ? 'bg-gradient-hero text-primary-foreground shadow-cta scale-105'
-                    : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+          <div className="mb-12 flex justify-center">
+            <button
+              type="button"
+              className="px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 bg-gradient-hero text-primary-foreground shadow-cta scale-105"
+            >
+              Empreendedorismo
+            </button>
           </div>
 
           <div className="flex justify-center">

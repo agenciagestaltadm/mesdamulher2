@@ -25,16 +25,14 @@ const HeroSection = () => {
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Crown Icon */}
           <div className="flex justify-center animate-float">
-            <div className="p-4 rounded-full bg-gold/20 backdrop-blur-sm border border-gold/30">
-              <img
-                src="/Image from Image (13) (1).png"
-                alt="Brasão de Curionópolis"
-                width={84}
-                height={84}
-                decoding="async"
-                className="h-[72px] w-[72px] sm:h-[84px] sm:w-[84px] object-contain"
-              />
-            </div>
+            <img
+              src="/Image from Image (13) (1).png"
+              alt="Brasão de Curionópolis"
+              width={84}
+              height={84}
+              decoding="async"
+              className="h-[72px] w-[72px] rounded-full border border-gold/30 bg-gold/20 p-4 object-contain backdrop-blur-sm sm:h-[84px] sm:w-[84px]"
+            />
           </div>
 
           {/* Title */}

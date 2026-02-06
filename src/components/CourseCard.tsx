@@ -38,6 +38,12 @@ const CourseCard = ({ course, index }: CourseCardProps) => {
         {course.nome}
       </h3>
 
+      {course.descricao && (
+        <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-white/80">
+          {course.descricao}
+        </p>
+      )}
+
       <div className="mt-4 space-y-2 text-sm text-white/80">
         <div className="flex flex-wrap items-center gap-2">
           <Calendar className="h-4 w-4 text-[#FFD700]" />
