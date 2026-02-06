@@ -1,4 +1,4 @@
-import { Calendar, Clock, MapPin, Users, User } from 'lucide-react';
+import { Calendar, Clock, MapPin } from 'lucide-react';
 import { Course, categoryColors } from '@/data/courses';
 import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -13,62 +13,42 @@ const CourseCard = ({ course, index }: CourseCardProps) => {
   const categoryColor = categoryColors[course.categoria];
 
   return (
-    <article 
-      className="group bg-card rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-500 hover:-translate-y-1 border border-border/50 animate-slide-up"
+    <article
+      className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#4B0082]/90 via-[#5B2C83]/80 to-[#FFE8F0]/70 p-6 shadow-[0_20px_45px_rgba(35,10,69,0.25)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_rgba(35,10,69,0.35)] focus-within:ring-2 focus-within:ring-[#F7C8D9]/70 animate-slide-up"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
-      {/* Category Header */}
-      <div className={`${categoryColor} px-6 py-3`}>
-        <span className="text-sm font-semibold text-primary-foreground uppercase tracking-wide">
-          {course.categoria}
-        </span>
+      <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#FFD700]/20 blur-2xl" />
+      <div className="pointer-events-none absolute -bottom-10 -left-10 h-28 w-28 rounded-full bg-[#F7C8D9]/30 blur-2xl" />
+      <div className="pointer-events-none absolute right-5 top-5 flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/10 text-[10px] font-semibold text-white/90">
+        ♀
       </div>
 
-      {/* Content */}
-      <div className="p-6 space-y-4">
-        {/* Title */}
-        <h3 className="font-display text-xl font-bold text-card-foreground group-hover:text-primary transition-colors line-clamp-2">
-          {course.nome}
-        </h3>
+      <div className="relative flex flex-wrap items-center gap-2">
+        <span className={`${categoryColor} inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold text-primary-foreground shadow-[0_6px_16px_rgba(0,0,0,0.2)]`}>
+          {course.categoria}
+        </span>
+        {course.vagas && (
+          <span className="rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-xs text-white/80">
+            {course.vagas} vagas
+          </span>
+        )}
+      </div>
 
-        {/* Description */}
-        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
-          {course.descricao}
-        </p>
+      <h3 className="mt-5 line-clamp-2 font-display text-xl font-semibold tracking-tight text-white drop-shadow-sm transition-colors group-hover:text-[#FFD700]">
+        {course.nome}
+      </h3>
 
-        {/* Details Grid */}
-        <div className="grid grid-cols-2 gap-3 pt-2">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Calendar className="w-4 h-4 text-accent" />
-            <span>{formattedDate}</span>
-          </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Clock className="w-4 h-4 text-accent" />
-            <span>{course.horario}</span>
-          </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground col-span-2">
-            <MapPin className="w-4 h-4 text-accent flex-shrink-0" />
-            <span className="truncate">{course.local}</span>
-          </div>
+      <div className="mt-4 space-y-2 text-sm text-white/80">
+        <div className="flex flex-wrap items-center gap-2">
+          <Calendar className="h-4 w-4 text-[#FFD700]" />
+          <span>{formattedDate}</span>
+          <span className="text-white/40">•</span>
+          <Clock className="h-4 w-4 text-[#FFD700]" />
+          <span>{course.horario}</span>
         </div>
-
-        {/* Meta Info */}
-        <div className="flex items-center justify-between pt-4 border-t border-border">
-          {course.facilitador && (
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <User className="w-3 h-3" />
-              <span className="truncate max-w-[150px]">{course.facilitador}</span>
-            </div>
-          )}
-          {course.vagas && (
-            <div className="flex items-center gap-1 text-xs">
-              <Users className="w-3 h-3 text-accent" />
-              <span className="text-accent font-medium">{course.vagas} vagas</span>
-            </div>
-          )}
-          {course.cargaHoraria && !course.vagas && (
-            <span className="text-xs text-muted-foreground">{course.cargaHoraria}</span>
-          )}
+        <div className="flex items-start gap-2">
+          <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#FFD700]" />
+          <span className="line-clamp-2">{course.local}</span>
         </div>
       </div>
     </article>

@@ -1,6 +1,9 @@
 import { useState, useMemo } from 'react';
 import { courses, CourseCategory } from '@/data/courses';
 import CourseCard from './CourseCard';
+import { AnimatedTabs } from '@/components/ui/animated-tabs';
+import { format, parseISO } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 const categories: (CourseCategory | 'Todos')[] = ['Todos', 'Saúde', 'Empreendedorismo', 'Oficina', 'Curso', 'Palestra'];
 
@@ -15,6 +18,19 @@ const CoursesSection = () => {
       .filter(course => course.categoria === activeCategory)
       .sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
   }, [activeCategory]);
+
+  const tabs = useMemo(
+    () =>
+      filteredCourses.map((course, index) => {
+        const labelDate = format(parseISO(course.data), "d MMM", { locale: ptBR });
+        return {
+          id: course.id,
+          label: `${labelDate} · ${course.categoria}`,
+          content: <CourseCard key={course.id} course={course} index={index} />,
+        };
+      }),
+    [filteredCourses],
+  );
 
   return (
     <section id="cursos" className="py-20 bg-background">
@@ -51,11 +67,8 @@ const CoursesSection = () => {
             ))}
           </div>
 
-          {/* Courses Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredCourses.map((course, index) => (
-              <CourseCard key={course.id} course={course} index={index} />
-            ))}
+          <div className="flex justify-center">
+            <AnimatedTabs tabs={tabs} className="w-full max-w-5xl" />
           </div>
 
           {/* Results Count */}

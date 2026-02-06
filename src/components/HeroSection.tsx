@@ -1,4 +1,4 @@
-import { Crown, ArrowDown } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 import heroBanner from '@/assets/hero-banner.jpg';
 
 const HeroSection = () => {
@@ -26,7 +26,14 @@ const HeroSection = () => {
           {/* Crown Icon */}
           <div className="flex justify-center animate-float">
             <div className="p-4 rounded-full bg-gold/20 backdrop-blur-sm border border-gold/30">
-              <Crown className="w-12 h-12 text-gold" />
+              <img
+                src="/Image from Image (13) (1).png"
+                alt="Brasão de Curionópolis"
+                width={84}
+                height={84}
+                decoding="async"
+                className="h-[72px] w-[72px] sm:h-[84px] sm:w-[84px] object-contain"
+              />
             </div>
           </div>
 

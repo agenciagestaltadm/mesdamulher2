@@ -3,22 +3,22 @@ import { useEffect, useRef } from 'react';
 const AboutSection = () => {
   const cards = [
     {
-      src: '/Image%20from%20Image%20(8).png',
+      src: 'https://i.ibb.co/Z6H3WSF0/Image-from-Image-8.png',
       alt: 'Image-from-Image-8',
       href: 'https://ibb.co/tMZS8zv9',
     },
     {
-      src: '/Image%20from%20Image%20(9).png',
+      src: 'https://i.ibb.co/Z1dhK42z/Image-from-Image-9.png',
       alt: 'Image-from-Image-9',
       href: 'https://ibb.co/mFJHtZN5',
     },
     {
-      src: '/Image%20from%20Image%20(12).png',
+      src: 'https://i.ibb.co/8nWbGYpd/Proposta-comercial-Feira-Gastron-mica-de-Cana-dos-Caraj-s-2.jpg',
       alt: 'Proposta comercial Feira Gastronômica de Canaã dos Carajás (2)',
       href: 'https://imgbb.com/',
     },
     {
-      src: '/Image%20from%20Image%20(10).png',
+      src: 'https://i.ibb.co/wZvdBLJS/Image-from-Image-10.png',
       alt: 'Image-from-Image-10',
       href: 'https://ibb.co/twdHQhZq',
     },
@@ -113,24 +113,16 @@ const AboutSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-reveal
-                style={{ transitionDelay: `${160 + index * 60}ms` }}
-                className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-border/50 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:aspect-square"
+                style={{ transitionDelay: `${160 + index * 80}ms` }}
+                className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 shadow-soft backdrop-blur-sm"
               >
-                <img
-                  src={card.src}
-                  alt={card.alt}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                />
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/25 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-100"
-                />
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                />
+                <div className="aspect-[4/3] w-full overflow-hidden sm:aspect-square">
+                  <img
+                    src={card.src}
+                    alt={card.alt}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
               </a>
             ))}
           </div>
