@@ -12,11 +12,17 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { toast } from '@/components/ui/use-toast';
 import { isSupabaseConfigured, requireSupabase } from '@/lib/supabase';
+import { applyPhoneMask } from '@/lib/phone';
 
 const formSchema = z.object({
-  name: z.string().min(2, 'Informe seu nome'),
-  email: z.string().email('Informe um e-mail válido'),
-  phone: z.string().min(8, 'Informe um telefone válido'),
+  name: z.string().min(2, 'Informe seu nome completo'),
+  email: z.string()
+    .min(1, 'E-mail é obrigatório')
+    .email('Formato de e-mail inválido. Verifique se digitou corretamente.')
+    .refine((val) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val), 'Informe um domínio de e-mail válido (ex: .com, .br)'),
+  phone: z.string()
+    .min(1, 'Telefone é obrigatório')
+    .regex(/^\+55 \d{2} \d{5}-\d{4}$/, 'Formato inválido. Use: +55 11 91234-5678'),
   courseId: z.string().min(1, 'Selecione um curso'),
 });
 
@@ -210,9 +216,18 @@ const Register = () => {
                     name="phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Telefone</FormLabel>
+                        <FormLabel>WhatsApp</FormLabel>
                         <FormControl>
-                          <Input placeholder="(00) 00000-0000" autoComplete="tel" {...field} />
+                          <Input
+                            placeholder="+55 11 91234-5678"
+                            autoComplete="tel"
+                            {...field}
+                            onChange={(e) => {
+                              const masked = applyPhoneMask(e.target.value);
+                              field.onChange(masked);
+                            }}
+                            maxLength={17}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

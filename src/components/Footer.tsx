@@ -131,7 +131,7 @@ const Footer = () => {
               <button
                 type="button"
                 aria-label="Admin"
-                className="h-3 w-3 rounded-full opacity-0"
+                className="h-3 w-3 rounded-full bg-background/30 ring-1 ring-background/20 opacity-70 transition-opacity hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/40"
                 onClick={() => setAdminOpen(true)}
               />
             </div>

@@ -95,7 +95,7 @@ const AboutSection = () => {
               className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg"
             >
               Durante o <strong className="text-foreground">Mês da Mulher</strong>, Curionópolis recebe uma programação
-              especial de cursos, oficinas e palestras com temas de saúde, desenvolvimento pessoal e empreendedorismo.{' '}
+              especial de cursos, oficinas e palestras.{' '}
               <strong className="text-foreground">Participe, aprenda e compartilhe.</strong>
             </p>
           </header>
@@ -105,7 +105,7 @@ const AboutSection = () => {
             - Mobile: cards mais “cinematográficos” (aspect 4/3) para reduzir aperto visual.
             - Desktop: volta ao square para reforçar grid editorial.
           */}
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+          <div className="mt-12 hidden sm:grid gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
             {cards.map((card, index) => (
               <a
                 key={card.src}

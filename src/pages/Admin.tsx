@@ -24,7 +24,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { toast } from '@/components/ui/use-toast';
-import { buildDisparoCsv, buildFullWorkbookBlob, downloadBlob } from '@/lib/exports';
+import { buildDisparoXlsxBlob, buildFullWorkbookBlob, downloadBlob } from '@/lib/exports';
 import { normalizePhoneForWhatsApp } from '@/lib/phone';
 import { isSupabaseConfigured, requireSupabase } from '@/lib/supabase';
 
@@ -229,12 +229,12 @@ const Admin = () => {
 
     setExporting('disparo');
     try {
-      const csv = buildDisparoCsv(payload);
-      downloadBlob(`inscricoes-disparo-${new Date().toISOString().slice(0, 10)}.csv`, new Blob([csv], { type: 'text/csv;charset=utf-8' }));
-      toast({ title: 'Download iniciado', description: 'Arquivo CSV para disparo gerado com sucesso.' });
+      const blob = buildDisparoXlsxBlob(payload);
+      downloadBlob(`inscricoes-disparo-${new Date().toISOString().slice(0, 10)}.xlsx`, blob);
+      toast({ title: 'Download iniciado', description: 'Arquivo Excel para disparo gerado com sucesso.' });
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Erro inesperado';
-      toast({ title: 'Falha ao gerar CSV', description: message, variant: 'destructive' });
+      toast({ title: 'Falha ao gerar Excel', description: message, variant: 'destructive' });
     } finally {
       setExporting(null);
     }

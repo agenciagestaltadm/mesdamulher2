@@ -16,10 +16,20 @@ export const formatDateDDMMYYYY = (value: string) => {
   return `${pad2(date.getDate())}/${pad2(date.getMonth() + 1)}/${date.getFullYear()}`;
 };
 
-export const buildDisparoCsv = (rows: Array<{ name: string; phone: string }>) => {
-  const normalizeName = (value: string) => (value ?? '').replace(/[,\r\n]+/g, ' ').trim();
-  const lines = ['Name,Phone', ...rows.map((row) => `${normalizeName(row.name)},${row.phone}`)];
-  return `${lines.join('\r\n')}\r\n`;
+export const buildDisparoXlsxBlob = (rows: Array<{ name: string; phone: string }>) => {
+  const header = ['name', 'phone'];
+  const data = rows.map((row) => [row.name, row.phone]);
+  const ws = XLSX.utils.aoa_to_sheet([header, ...data]);
+
+  const range = XLSX.utils.decode_range(ws['!ref'] ?? 'A1:B1');
+  ws['!autofilter'] = { ref: XLSX.utils.encode_range(range) };
+  ws['!cols'] = [{ wch: 30 }, { wch: 20 }];
+
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Disparo');
+
+  const buffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' }) as ArrayBuffer;
+  return new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 };
 
 export const buildFullWorkbookArrayBuffer = (rows: FullExportRow[]) => {

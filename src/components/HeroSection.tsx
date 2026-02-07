@@ -43,7 +43,7 @@ const HeroSection = () => {
 
           {/* Subtitle */}
           <p className="text-lg md:text-xl text-primary-foreground/90 font-medium tracking-wide uppercase animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            Saúde • Empreendedorismo • Oficinas • Cursos • Palestras
+            Oficinas • Cursos • Palestras
           </p>
 
           {/* Description */}
