@@ -25,11 +25,8 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
               <div className="text-center mb-10">
-                <span className="inline-block px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-4">
-                  Apoio
-                </span>
                 <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">
-                  Patrocinadores
+                  Realização das
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                   Instituições que apoiam e fortalecem essa iniciativa.

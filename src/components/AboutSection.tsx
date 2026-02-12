@@ -133,7 +133,7 @@ const AboutSection = () => {
             className="mt-14 text-center sm:mt-16"
           >
             <p className="text-muted-foreground">
-              Realização: <strong className="text-foreground">Prefeitura Municipal de Curionópolis</strong>
+              Parceria: <strong className="text-foreground">Prefeitura Municipal de Curionópolis</strong>
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
               Apoio: Instituto Rosa — &quot;Somar para Transformar&quot;
